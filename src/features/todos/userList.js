@@ -1,26 +1,26 @@
-import { useGetTodosQuery, useUpdateTodoMutation, useDeleteTodoMutation, useAddTodoMutation } from "../api/apiSlice"
+import { useGetUsersQuery, useUpdateUserMutation, useDeleteUserMutation, useAddUserMutation } from "../api/userSlice"
 import { useState } from "react"
 import { nanoid } from '@reduxjs/toolkit'
 
 const TodoList = () => {
-    const [newTodo, setNewTodo] = useState('')
+    const [newUser, setNewUser] = useState('')
     const modelId = nanoid();
 
     const {
-        data: todos,
+        data: users,
         isLoading,
         isSuccess,
         isError,
         error
-    } = useGetTodosQuery()
-    const [addTodo] = useAddTodoMutation()
-    const [updateTodo] = useUpdateTodoMutation()
-    const [deleteTodo] = useDeleteTodoMutation()
+    } = useGetUsersQuery()
+    const [addUser] = useAddUserMutation()
+    const [updateUser] = useUpdateUserMutation()
+    const [deleteUser] = useDeleteUserMutation()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addTodo({ userId: modelId, title: newTodo, completed: false })
-        setNewTodo('')
+        addUser({ userId: modelId, description: newUser, active: false })
+        setNewUser('')
     }
 
     const newItemSection =
