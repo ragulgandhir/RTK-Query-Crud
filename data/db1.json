@@ -1,0 +1,17 @@
+{
+    "users": [
+      {
+        "userId": "",
+        "firstName": "",
+        "lastname": "",
+        "mail": "",
+        "phoneno": "",
+        "password": "",
+        "confirmpassword": "",
+        "profile": "",
+        "certificate": "",
+        "description": "",
+        "active": false
+      }
+    ]
+  }
