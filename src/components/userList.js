@@ -16,10 +16,10 @@ import {
   useUpdatePostMutation,
   useGetPostFilterQuery,
 } from "../services/post";
-import { nanoid } from "@reduxjs/toolkit";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
+import {useNavigate} from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,6 +43,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function CustomizedTables() {
   const responseInfo = useGetAllPostQuery();
+  const [deletePost] = useDeletePostMutation()
+  let navigate = useNavigate();
 
   console.log("Response Information: ", responseInfo);
   console.log("Data: ", responseInfo.data);
@@ -55,7 +57,7 @@ export default function CustomizedTables() {
   return (
     <div>
       <Grid container justifyContent="flex-end">
-        <Button variant="outlined">Add</Button>
+        <Button variant="contained" color="success" onClick = {() => navigate("/addUser")}>Add User</Button>
       </Grid>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -81,9 +83,9 @@ export default function CustomizedTables() {
                 <StyledTableCell align="right">{user.phone}</StyledTableCell>
                 <StyledTableCell align="right">
                   <Stack spacing={2} direction="row" justifyContent="flex-end">
-                    <Button variant="outlined">View</Button>
-                    <Button variant="outlined">Update</Button>
-                    <Button variant="outlined">Delete</Button>
+                    <Button variant="contained" color="primary">View</Button>
+                    <Button variant="contained" onClick={() => navigate(`/editUser/${user.id}`)} color="secondary">Update</Button>
+                    <Button variant="contained" color="error" onClick={() => { deletePost(user.id) }}>Delete</Button>
                   </Stack>
                 </StyledTableCell>
               </StyledTableRow>

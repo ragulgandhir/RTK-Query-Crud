@@ -6,23 +6,23 @@ function PostList() {
 //   const responseInfo = useGetPostByIdQuery(4)
 //   const responseInfo = useGetPostByLimitQuery(3)
 // const [deletePost, responseInfo] = useDeletePostMutation()
-//  const [createPost, responseInfo] = useCreatePostMutation()
+ const [createPost, responseInfo] = useCreatePostMutation()
 // const [updatePost, responseInfo] = useUpdatePostMutation();
- const responseInfo = useGetPostFilterQuery('uNeVaNNCi1uT-CMvNsqqA', 
- {
-  // Automatically refetch every 3s
-  // pollingInterval: 3000,
-})
+//  const responseInfo = useGetPostFilterQuery('uNeVaNNCi1uT-CMvNsqqA', 
+//  {
+//   // Automatically refetch every 3s
+//   // pollingInterval: 3000,
+// })
 
   const modelId = nanoid();
 
   const newPost = {
     userId: modelId,
-    id: 30,
-    name: 'jessica',
-    age: 23,
-    email:'jessy@gmail.com',
-    phone: '766 737 3877'
+    id: 20,
+    name: 'luci',
+    age: 34,
+    email:'luci@gmail.com',
+    phone: '783 898 8989'
   }
 
   const updatePostData = {
@@ -94,10 +94,10 @@ function PostList() {
     // </div>
 
     // Create Data
-    // <div className="App">
-    //   <h1>Redux Toolkit - RTK Query (Create Data)</h1>
-    //   <button onClick={() => { createPost(newPost) }}>Add Post</button>
-    // </div>
+    <div className="App">
+      <h1>Redux Toolkit - RTK Query (Create Data)</h1>
+      <button onClick={() => { createPost(newPost) }}>Add Post</button>
+    </div>
 
     // Update Data
     // <div className="App">
@@ -106,21 +106,21 @@ function PostList() {
     // </div>
 
      // Get Filter Data
-    <div className="App">
-      <h1>Redux Toolkit - RTK Query (Get Filtered by same userId Data)</h1>
-      {
-        responseInfo.data.map((user, i) =>
-          <div key={i}>
-            <h1>{user.id}</h1>
-            <h2>{user.name}</h2>
-            <h3>{user.age}</h3>
-            <p>{user.email}</p>
-            <p>{user.phone}</p>
-            <hr />
-          </div>
-        )
-      }
-    </div>
+    // <div className="App">
+    //   <h1>Redux Toolkit - RTK Query (Get Filtered by same userId Data)</h1>
+    //   {
+    //     responseInfo.data.map((user, i) =>
+    //       <div key={i}>
+    //         <h1>{user.id}</h1>
+    //         <h2>{user.name}</h2>
+    //         <h3>{user.age}</h3>
+    //         <p>{user.email}</p>
+    //         <p>{user.phone}</p>
+    //         <hr />
+    //       </div>
+    //     )
+    //   }
+    // </div>
   );
 }
 
