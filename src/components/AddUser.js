@@ -8,7 +8,6 @@ import { useCreatePostMutation, useGetAllPostQuery } from '../services/post';
 
 const AddUser = () => {
   const [createPost] = useCreatePostMutation()
-  const {refetch} = useGetAllPostQuery();
   const modelId = nanoid();
   const [state, setState] = useState({
     userId: modelId,
@@ -35,7 +34,6 @@ const AddUser = () => {
         setError("Please give some input all input field");
     }else{
         createPost(state);
-        refetch();
         navigate("/");
         setError("");
     }

@@ -3,17 +3,15 @@ import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import { nanoid } from "@reduxjs/toolkit";
 import Button from "@mui/material/Button";
-import { useSelector } from "react-redux";
+import { useDispatch ,useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetPostByIdQuery, useUpdatePostMutation } from '../services/post';
 
 const EditUser = () => {
-  const responseInfo = useGetPostByIdQuery()
+  const [getSinglePost] = useGetPostByIdQuery()
   const [updatePost] = useUpdatePostMutation();
   const modelId = nanoid();
   const [state, setState] = useState({
-    userId: modelId,
-    id: "",
     name: "",
     age: "",
     email: "",
@@ -23,16 +21,20 @@ const EditUser = () => {
   let {id} = useParams();
   const {user} = useSelector((state) => state.data);
   let navigate = useNavigate();
+  let dispatch = useDispatch();
+
 
   const { name, age, email, phone } = state;
 
   useEffect(() =>{
-    responseInfo(id);
+    dispatch(getSinglePost(id));
   }, []);
 
   useEffect(() => {
-    updatePost()
-  }, []);
+    if(user){
+      setState({ ...user});
+    }
+  }, [user]);
 
   const handleInputChange = (e) => {
     let { name, value } = e.target;
@@ -44,7 +46,7 @@ const EditUser = () => {
     if(!name || !age || !email || !phone){
         setError("Please give some input all input field");
     }else{
-        updatePost(state, id);
+        dispatch(updatePost(state, id));
         navigate("/");
         setError("");
     }

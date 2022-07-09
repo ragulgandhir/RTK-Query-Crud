@@ -1,92 +1,72 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// It is used to define our endpoints and allow to create the API slice
 export const postApi = createApi({
- // The unique key that defines where the Redux store will store our cache.
  reducerPath: 'postApi',
-
- // The base query to request data.
- // RTK Query ships with fetchBaseQuery, which is a lightweight fetch wrapper that automatically handles request headers and response parsing in a manner similar to common libraries like axios.
  baseQuery: fetchBaseQuery({
   baseUrl: 'http://localhost:3000/',
  }),
-
- // The set of operations that we want to perform against the server.
- endpoints: (builder) => ({
-  getAllPost: builder.query({
-   query: () => ({
-    url: 'users',
-    method: 'GET'
-   })
+ tagTypes: ['Users'],
+ endpoints: (build) => ({
+  getAllPost: build.query({
+    query: () => 'users',
+    providesTags: (result) =>
+        result
+          ? 
+            [
+              ...result.map(({ id }) => ({ type: 'Users', id })),
+              { type: 'Users', id: 'LIST' },
+            ]
+          : 
+            [{ type: 'Users', id: 'LIST' }],
   }),
-  getPostById: builder.query({
-   query: (id) => {
-    console.log("ID:", id)
-    return {
-     url: `users/${id}`,
-     method: 'GET'
-    }
-   }
-  }),
-
-  getPostByLimit: builder.query({
-   query: (num) => {
-    console.log("Limit Number:", num)
-    return {
-     url: `users?_limit=${num}`,
-     method: 'GET'
-    }
-   }
+  getPostById: build.query({
+      query: (id) => `users/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Users', id }],
   }),
 
-  deletePost: builder.mutation({
-   query: (id) => {
+  getPostByLimit: build.query({
+    query: (num) => `users?_limit=${num}`,
+    providesTags: (result, error, num) => [{ type: 'Users', num }],
+  }),
+
+  deletePost: build.mutation({
+   query(id){
     console.log("Delete ID:", id)
     return {
      url: `users/${id}`,
-     method: 'DELETE'
+     method: 'DELETE',
+     body: id
     }
-   }
+   },
+   invalidatesTags: (result, error, id) => [{ type: 'Users', id }],
   }),
 
-  createPost: builder.mutation({
-   query: (newPost) => {
-    console.log("Create Post: ", newPost)
-    return {
-     url: `users`,
-     method: 'POST',
-     body: newPost,
-     headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-     }
-    }
-   }
+  createPost: build.mutation({
+    query(body) {
+      return {
+        url: `users`,
+        method: 'POST',
+        body,
+      }
+    },
+   invalidatesTags: [{ type: 'Users', id: 'LIST' }],
   }),
 
-  updatePost: builder.mutation({
-   query: (updatePostData) => {
-    console.log("Update Post: ", updatePostData)
-    const { id, ...data } = updatePostData
-    console.log("Actual Update Post: ", data)
-    return {
-     url: `users/${id}`,
-     method: 'PUT',
-     body: data,
-     headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-     }
-    }
-   }
+  updatePost: build.mutation({
+    query(data) {
+      const { id, ...body } = data
+      return {
+        url: `users/${id}`,
+        method: 'PUT',
+        body,
+      }
+    },
+   invalidatesTags: (result, error, { id }) => [{ type: 'Users', id }],
   }),
 
-  getPostFilter: builder.query({
-    query: (userId) => {
-     console.log("Filter UserID:", userId)
-     return {
-      url: `users?userId=${userId}`,
-      method: 'GET'
-     }
-    }
+  getPostFilter: build.query({
+    query: (userId) => `users?userId=${userId}`,
+    providesTags: (result, error, userId) => [{ type: 'Users', userId }],
    }),
  }),
 

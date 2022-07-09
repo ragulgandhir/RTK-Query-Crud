@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useState, useEffect} from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -20,6 +20,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
 import {useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,8 +44,35 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function CustomizedTables() {
   const responseInfo = useGetAllPostQuery();
-  const [deletePost] = useDeletePostMutation()
+  const [deletePost, { isLoading, error, isSuccess, isError }] = useDeletePostMutation();
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Post deleted successfully');
+    }
+
+    if (isError) {
+      if (Array.isArray((error).data.error)) {
+        (error).data.error.forEach((el) =>
+          toast.error(el.message, {
+            position: 'top-right',
+          })
+        );
+      } else {
+        toast.error((error).data.message, {
+          position: 'top-right',
+        });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
+
+  const onDeleteHandler = (id) => {
+    if (window.confirm('Are you sure you want delete this user ?')) {
+      deletePost(id);
+    }
+  };
 
   console.log("Response Information: ", responseInfo);
   console.log("Data: ", responseInfo.data);
@@ -83,9 +111,9 @@ export default function CustomizedTables() {
                 <StyledTableCell align="right">{user.phone}</StyledTableCell>
                 <StyledTableCell align="right">
                   <Stack spacing={2} direction="row" justifyContent="flex-end">
-                    <Button variant="contained" color="primary">View</Button>
+                    <Button variant="contained" onClick={() => navigate(`/viewUser/${user.id}`)} color="primary">View</Button>
                     <Button variant="contained" onClick={() => navigate(`/editUser/${user.id}`)} color="secondary">Update</Button>
-                    <Button variant="contained" color="error" onClick={() => { deletePost(user.id) }}>Delete</Button>
+                    <Button variant="contained" color="error" onClick={() => onDeleteHandler(user.id)}>Delete</Button>
                   </Stack>
                 </StyledTableCell>
               </StyledTableRow>

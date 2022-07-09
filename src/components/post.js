@@ -3,33 +3,33 @@ import { nanoid } from '@reduxjs/toolkit'
 
 function PostList() {
 //   const responseInfo = useGetAllPostQuery()
-//   const responseInfo = useGetPostByIdQuery(4)
-//   const responseInfo = useGetPostByLimitQuery(3)
-// const [deletePost, responseInfo] = useDeletePostMutation()
- const [createPost, responseInfo] = useCreatePostMutation()
+  // const responseInfo = useGetPostByIdQuery(20)
+  // const responseInfo = useGetPostByLimitQuery(3)
+const [deletePost, responseInfo] = useDeletePostMutation()
+//  const [createPost, responseInfo] = useCreatePostMutation()
 // const [updatePost, responseInfo] = useUpdatePostMutation();
-//  const responseInfo = useGetPostFilterQuery('uNeVaNNCi1uT-CMvNsqqA', 
+//  const responseInfo = useGetPostFilterQuery('YTbV5OngtZd_moqv2zrKM', 
 //  {
-//   // Automatically refetch every 3s
-//   // pollingInterval: 3000,
+  // Automatically refetch every 3s
+//   pollingInterval: 3000,
 // })
 
   const modelId = nanoid();
 
   const newPost = {
     userId: modelId,
-    id: 20,
-    name: 'luci',
-    age: 34,
-    email:'luci@gmail.com',
+    id: 22,
+    name: 'jimmy',
+    age: 20,
+    email:'jimmy@gmail.com',
     phone: '783 898 8989'
   }
 
   const updatePostData = {
     userId: modelId,
-    id: 6,
+    id: 21,
     name: 'jerry',
-    age: 20,
+    age: 30,
     email:'jerry@yahoo.com',
     phone: '235 565 3676'
   }
@@ -88,16 +88,16 @@ function PostList() {
     // </div>
 
     // Delete Data
-    // <div className="App">
-    //   <h1>Redux Toolkit - RTK Query (Delete Data)</h1>
-    //   <button onClick={() => { deletePost(20) }}>Delete Post</button>
-    // </div>
+    <div className="App">
+      <h1>Redux Toolkit - RTK Query (Delete Data)</h1>
+      <button onClick={() => { deletePost(21) }}>Delete Post</button>
+    </div>
 
     // Create Data
-    <div className="App">
-      <h1>Redux Toolkit - RTK Query (Create Data)</h1>
-      <button onClick={() => { createPost(newPost) }}>Add Post</button>
-    </div>
+    // <div className="App">
+    //   <h1>Redux Toolkit - RTK Query (Create Data)</h1>
+    //   <button onClick={() => { createPost(newPost) }}>Add Post</button>
+    // </div>
 
     // Update Data
     // <div className="App">
