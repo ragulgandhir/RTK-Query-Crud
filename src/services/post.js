@@ -30,15 +30,11 @@ export const postApi = createApi({
   }),
 
   deletePost: build.mutation({
-   query(id){
-    console.log("Delete ID:", id)
-    return {
+   query: (id) => ({
      url: `users/${id}`,
      method: 'DELETE',
-     body: id
-    }
-   },
-   invalidatesTags: (result, error, id) => [{ type: 'Users', id }],
+   }),
+   invalidatesTags: ['Users'],
   }),
 
   createPost: build.mutation({

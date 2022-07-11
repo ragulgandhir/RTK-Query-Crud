@@ -1,11 +1,10 @@
 import './App.css';
-import TodoList from "./features/todos/TodoList";
-import PostList from './components/post';
-import CustomizedTables from './components/userList';
-import AddUser from './components/AddUser';
-import EditUser from './components/EditUser';
-import UserInfo from './components/userView';
-import { Routes, Route, Link } from "react-router-dom";
+// import TodoList from "./features/todos/TodoList";
+// import PostList from './components/post';
+import CustomizedTables from './components/UserList/userList';
+import UserForm from './components/EditUser/EditUser';
+import FullProfile from './components/View/userView';
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -14,9 +13,9 @@ function App() {
       {/* <PostList /> */}
       <Routes>
         <Route path="/" element={<CustomizedTables />} />
-        <Route path="/addUser" element={<AddUser />} />
-        <Route path="/editUser/:id" element={<EditUser />} />
-        <Route path="/viewUser/:id" element={<UserInfo />} />
+        <Route path="/addUser" element={<UserForm />} />
+        <Route path="/editUser/:id" element={<UserForm />} />
+        <Route path="/users/:id" element={<FullProfile />} />
       </Routes>
     </div>
   );

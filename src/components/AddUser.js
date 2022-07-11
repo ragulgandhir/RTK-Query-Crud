@@ -4,7 +4,7 @@ import FormControl from "@mui/material/FormControl";
 import { nanoid } from "@reduxjs/toolkit";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import { useCreatePostMutation, useGetAllPostQuery } from '../services/post';
+import { useCreatePostMutation } from '../services/post';
 
 const AddUser = () => {
   const [createPost] = useCreatePostMutation()
@@ -12,16 +12,21 @@ const AddUser = () => {
   const [state, setState] = useState({
     userId: modelId,
     id: "",
-    name: "",
+    first_name: "",
+    last_name: "",
     age: "",
     email: "",
     phone: "",
+    country: "",
+    city: "",
+    company: "",
+    job: "",
   });
   const [error, setError] = useState(''); 
 
   let navigate = useNavigate();
 
-  const { id, name, age, email, phone } = state;
+  const { id, first_name, last_name, age, email, phone, country, city, company, job } = state;
 
   const handleInputChange = (e) => {
     let { name, value } = e.target;
@@ -30,7 +35,7 @@ const AddUser = () => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    if(!id || !name || !age || !email || !phone){
+    if(!id || !first_name || !last_name || !age || !email || !phone || !country || !city || !company || !job ){
         setError("Please give some input all input field");
     }else{
         createPost(state);
@@ -69,9 +74,18 @@ const AddUser = () => {
         <br />
         <TextField
           id="outlined-basic"
-          label="Name"
-          value={name}
-          name = "name"
+          label="First Name"
+          value={first_name}
+          name = "first_name"
+          type="text"
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="Last Name"
+          value={last_name}
+          name = "last_name"
           type="text"
           onChange={handleInputChange}
         />
@@ -100,6 +114,42 @@ const AddUser = () => {
           value={phone}
           name = "phone"
           type="number"
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="Country"
+          value={country}
+          name = "country"
+          type="text"
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="City"
+          value={city}
+          name = "city"
+          type="text"
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="Company"
+          value={company}
+          name = "company"
+          type="text"
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          id="outlined-basic"
+          label="Job"
+          value={job}
+          name = "job"
+          type="text"
           onChange={handleInputChange}
         />
         <br />
