@@ -1,3 +1,28 @@
 {
-  "users": []
+  "users": [
+    {
+      "first_name": "Ashwin",
+      "last_name": "Mathew",
+      "age": "25",
+      "email": "ashwin@gmail.com",
+      "phone": "8398498398",
+      "company": "Shenll Tech",
+      "job": "PHP Developer",
+      "country": "Belgium",
+      "city": "newberk",
+      "id": 1
+    },
+    {
+      "first_name": "Mars",
+      "last_name": "Wellbrew",
+      "age": "20",
+      "email": "mars@gmail.com",
+      "phone": "8398498938",
+      "company": "JFW",
+      "job": "Technical Assistant",
+      "country": "Andorra",
+      "city": "Rio",
+      "id": 2
+    }
+  ]
 }
