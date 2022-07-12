@@ -1,28 +1,28 @@
 {
   "users": [
     {
-      "first_name": "Ashwin",
-      "last_name": "Mathew",
-      "age": "25",
+      "first_name": "Mathew",
+      "last_name": "Kappan",
+      "age": "27",
       "email": "ashwin@gmail.com",
       "phone": "8398498398",
-      "company": "Shenll Tech",
-      "job": "PHP Developer",
-      "country": "Belgium",
-      "city": "newberk",
-      "id": 1
+      "company": "GLT",
+      "job": "UI/UX designer",
+      "country": "China",
+      "city": "Vartico",
+      "id": 3
     },
     {
-      "first_name": "Mars",
-      "last_name": "Wellbrew",
-      "age": "20",
-      "email": "mars@gmail.com",
-      "phone": "8398498938",
-      "company": "JFW",
-      "job": "Technical Assistant",
-      "country": "Andorra",
-      "city": "Rio",
-      "id": 2
+      "first_name": "Louis",
+      "last_name": "Marcus",
+      "age": "40",
+      "email": "louis@gmail.com",
+      "phone": "390940390",
+      "company": "L&T",
+      "job": "Senior Engineer",
+      "country": "Greece",
+      "city": "Helton",
+      "id": 4
     }
   ]
 }

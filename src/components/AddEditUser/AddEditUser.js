@@ -10,9 +10,7 @@ import {
 } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-
 import useStyle from './style';
-
 import {
   useCreatePostMutation,
   useUpdatePostMutation,
@@ -23,11 +21,9 @@ const UserForm = () => {
   const classes = useStyle();
   const [fields, setFields] = useState();
   const [isSkip, setIsSkip] = useState(true);
-
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
-
   const { data, isLoading } = useGetPostByIdQuery(id, { skip: isSkip });
   const [editUser] = useUpdatePostMutation();
   const [addUser] = useCreatePostMutation();
@@ -50,7 +46,7 @@ const UserForm = () => {
     } else {
       await addUser(fields);
     }
-    navigate(-1);
+    navigate("/");
   };
 
   if (isLoading) return <h2>Loading...</h2>;
@@ -177,7 +173,7 @@ const UserForm = () => {
         <Button
           className={classes.backBtn}
           variant="contained"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/")}
         >
           <ArrowRightAltIcon /> Back to list
         </Button>

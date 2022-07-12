@@ -22,7 +22,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import useStyle from "./style";
-import { LIMITS } from "../../helpers/utils";
+// import { LIMITS } from "../../helpers/utils";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -49,11 +49,11 @@ export default function CustomizedTables() {
   const [deletePost] = useDeletePostMutation();
   let navigate = useNavigate();
   const classes = useStyle();
-  const [limit, setLimit] = useState("");
+  // const [limit, setLimit] = useState("");
 
-  const handleDeleteUser = async (user, id) => {
+  const handleDeleteUser = async (id) => {
     if (window.confirm("Are you sure you want delete this user ?")) {
-      await deletePost(user.id);
+      await deletePost(id);
     }
   };
 
@@ -66,7 +66,7 @@ export default function CustomizedTables() {
   return (
     <div>
       <Grid container justifyContent="center" alignItems="center">
-        <ButtonGroup
+        {/* <ButtonGroup
           variant="contained"
           sx={{ margin: "10px auto" }}
           className={classes.btnWrapper}
@@ -80,7 +80,7 @@ export default function CustomizedTables() {
               {item.id}
             </Button>
           ))}
-        </ButtonGroup>
+        </ButtonGroup> */}
         <Button
           variant="contained"
           color="success"
