@@ -45,7 +45,7 @@ export const postApi = createApi({
         body,
       }
     },
-   invalidatesTags: [{ type: 'Users', id: 'LIST' }],
+    invalidatesTags: ['Users'],
   }),
 
   updatePost: build.mutation({
@@ -57,7 +57,7 @@ export const postApi = createApi({
         body,
       }
     },
-   invalidatesTags: (result, error, { id }) => [{ type: 'Users', id }],
+    invalidatesTags: ['Users'],
   }),
 
   getPostFilter: build.query({
