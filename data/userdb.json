@@ -1,28 +1,28 @@
 {
   "users": [
     {
-      "first_name": "Mathew",
-      "last_name": "Kappan",
-      "age": "30",
-      "email": "ashwin@gmail.com",
+      "first_name": "Niranjan",
+      "last_name": "Nuthin",
+      "age": "27",
+      "email": "nirajan@gmail.com",
       "phone": "8398498398",
-      "company": "GLT",
+      "company": "Bita",
       "job": "UI/UX designer",
-      "country": "China",
-      "city": "Vartico",
-      "id": 3
+      "country": "Russia",
+      "city": "newberk",
+      "id": 1
     },
     {
-      "first_name": "Louis",
-      "last_name": "Marcus",
-      "age": "40",
-      "email": "louis@gmail.com",
-      "phone": "390940390",
-      "company": "L&T",
-      "job": "Senior Engineer",
-      "country": "Greece",
+      "first_name": "Marbie",
+      "last_name": "Kappan",
+      "age": "27",
+      "email": "marbie@gmail.com",
+      "phone": "83984938948",
+      "company": "SSL",
+      "job": "Technical Assistant",
+      "country": "Nepal",
       "city": "Helton",
-      "id": 4
+      "id": 2
     }
   ]
 }
