@@ -23,6 +23,15 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import useStyle from "./style";
 // import { LIMITS } from "../../helpers/utils";
+import Swal from "sweetalert2";
+
+const successAlert = () => {
+  Swal.fire({
+    title: "User Deleted!",
+    text: "User Deleted successfully",
+    icon: "error"
+  });
+};
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -54,6 +63,7 @@ export default function CustomizedTables() {
   const handleDeleteUser = async (id) => {
     if (window.confirm("Are you sure you want delete this user ?")) {
       await deletePost(id);
+      successAlert();
     }
   };
 

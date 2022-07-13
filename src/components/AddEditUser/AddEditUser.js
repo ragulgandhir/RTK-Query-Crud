@@ -7,6 +7,7 @@ import {
   Typography,
   Button,
   Grid,
+  Input,
 } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
@@ -16,6 +17,23 @@ import {
   useUpdatePostMutation,
   useGetPostByIdQuery
 } from "../../services/post";
+import Swal from "sweetalert2";
+
+const successAlert = () => {
+  Swal.fire({
+    title: "User Added!",
+    text: "User added successfully",
+    icon: "success"
+  });
+};
+
+const infoAlert = () => {
+  Swal.fire({
+    title: "User Updated!",
+    text: "User updated successfully",
+    icon: "info"
+  });
+};
 
 const UserForm = () => {
   const classes = useStyle();
@@ -43,8 +61,10 @@ const UserForm = () => {
   const onSubmit = async () => {
     if (id) {
       await editUser(fields);
+      infoAlert()
     } else {
       await addUser(fields);
+      successAlert()
     }
     navigate("/");
   };
@@ -156,6 +176,18 @@ const UserForm = () => {
                 fullWidth
                 label="City"
                 value={fields?.city || ''}
+                onChange={onChange}
+                required
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} className={classes.inputWrap}>
+              <Input
+                name="file"
+                variant="outlined"
+                fullWidth
+                label="File Upload"
+                type ="file"
+                value={fields?.file || ''}
                 onChange={onChange}
                 required
               />
